@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% include 'base/sidebar.html' %}
+
+<div class="container mt-3" style="margin-left:300px;">
+
+    <!-- Top Navbar -->
+    <div class="navbar navbar-expand-lg bg-body-tertiary">
+        <h5 class="ms-auto me-5 text-muted">Home</h5>
+        <a href="" class="text-decoration-none text-danger fw-bold">
+            <i class="fa-solid fa-power-off me-1"></i>Logout
+        </a>
+    </div>
+
+    <!-- Page Heading -->
+    <div class="mt-5 p-5" style="background:#edf2ef;">
+        <h1 class="display-6 fw-bold">Manage Staff Attendance</h1>
+    </div>
+
+    <!-- Attendance Card -->
+    <div class="card mt-5 shadow">
+        <div class="card-header bg-warning">
+            <h4 class="fw-bold text-dark">Add Staff Attendance</h4>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="fw-bold">Select Date:</label>
+                    <input type="date" name="date" value="{{ today }}" class="form-control w-25">
+                </div>
+
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Staff Name</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for staff in staff_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ staff.full_name }}</td>
+
+                            <td>
+                                <select name="status_{{ staff.id }}" class="form-select">
+                                    <option value="">--Select--</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                    <option value="Leave">Leave</option>
+                                    <option value="Half Day">Half Day</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <input type="text" name="remarks_{{ staff.id }}" class="form-control">
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-danger">
+                                No Active Staff Found
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-warning fw-bold px-5">
+                        Save Attendance
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

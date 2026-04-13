@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load static %}
+
+{% include 'base/sidebar.html' %}
+
+<div class="container mt-3" style="margin-left:300px;">
+    <div class="navbar navbar-expand-lg bg-body-tertiary">
+        <h5 class="ms-auto me-5 text-muted ">home</h5>
+        <a href="" class="text-decoration-none text-danger fw-bold"><i class="fa-solid fa-power-off me-1"></i>Logout</a>
+    </div>
+
+    <div class="mt-5 p-5" style="background:#edf2ef;">
+        <h1 class="display-4 fw-bold">Manage Student</h1>
+    </div>
+
+    <div class="mt-5">
+        <a href="{% url 'add_student' %}" class="text-decoration-none fw-bold text-light fs-5 "
+           style="background:linear-gradient(to right,#a7afc7,#757F9A); padding:15px 40px;">
+            <i class="fa-regular fa-plus"></i>Add Student</a>
+    </div>
+
+    <div class="card mt-5" style="background:#fdf0d5;">
+        <div class="card-header d-flex justify-content-between">
+            <h5 style="color:#08044a;">Student Details</h5>
+            <form action="" method="GET" class="d-flex" role="search" style="width:400px;">
+                <input class="form-control me-2" type="search" name="q" value="{{request.GET.q}}"
+                       placeholder="Search By Name, Last & Father Name" aria-label="Search"/>
+
+                <button class="btn btn-outline-primary me-1" type="submit"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <a href="{% url 'all_students'  %}" class="btn btn-outline-danger"> <i class="fa-solid fa-x"></i></a>
+
+            </form>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered  table-hover text-center" style="min-width:1500px;">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Father Name</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Caste</th>
+                    <th scope="col">Gander</th>
+                    <th scope="col">Religion</th>
+                    <th scope="col">Standard</th>
+                    <th scope="col">Enrollment status:</th>
+                    <th scope="col">Student Photo</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ student.first_name}}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.father }}</td>
+                    <td>{{ student.birth_date }}</td>
+                    <td>{{ student.caste }}</td>
+                    <td>{{ student.gender }}</td>
+                    <td>{{ student.religion }}</td>
+                    <td>{{ student.standard }}</td>
+                    <td>{{ student.enrollment_status }}</td>
+                    <td>
+                        {% if student.photo %}
+                        <img src="{{ student.photo.url }}" alt="std_image" style="width:50px;height:50px;"></td>
+                    {% else %}
+                     <img src="{% static 'base/images/21.jpg' %}" alt="no_image" width="50" height="50">
+                    {% endif %}
+
+                    <td>
+                        <a href="{% url 'edit_student' student.pk %}" class="btn btn-success"><i
+                                class="fa-solid fa-pencil"></i>Edit</a>
+                        <a href="{% url 'delete_student' student.pk %}" class="btn btn-danger"><i class="fa-solid fa-trash"></i>Delete</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

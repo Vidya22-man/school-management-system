@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+{% include 'base/sidebar.html' %}
+
+
+<div class="container mt-3" style="margin-left:300px;">
+    <div class="navbar navbar-expand-lg bg-body-tertiary">
+        {% if not user.is_authenticated %}
+        <h5 class="ms-auto me-5 text-muted">home</h5>
+        {% else %}
+        <span class=" me-2 ms-auto">Logged In: <b>{{user }}</b></span>
+        <a href="{% url 'logout'  %}" class="btn btn-outline-danger"> <i class="fa-solid fa-power-off me-1"></i>Logout</a>
+
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row g-2 mt-5">
+        <div class="col-md-4">
+            <div class="card w-100 h-100" style="background:linear-gradient(to right,#e89125,#5c5650);border-radius: 50px 0 50px 0;">
+                <div class="card-body py-5" >
+                    <h5 class="card-title fs-1 text-light">{{total_staff}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary fs-2">Total Staff</h6>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" >
+            <div class="card w-100 h-100 bg-info" style="background:linear-gradient(to right,#3ae8bf,#098568); border-radius: 50px 0 50px 0;">
+                <div class="card-body py-5" style="">
+                    <h5 class="card-title fs-1 text-light">{{ total_students}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary fs-2 text-light">Total Student</h6>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card w-100 h-100" style="background:linear-gradient(to right,#a560f0,#531b94);border-radius: 50px 0 50px 0;">
+                <div class="card-body py-5">
+                    <h5 class="card-title fs-1 text-light">{{total_subjects}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary fs-2">Total Subject</h6>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr>
+
+{% endblock %}

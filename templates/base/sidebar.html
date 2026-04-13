@@ -1,0 +1,51 @@
+{% load static %}
+
+<div class="" style="background:#470d12;position:fixed;width:300px;height:100vh;">
+
+    <h1 class="text-warning fs-1">SMS</h1>
+    <hr class="border-warning">
+    <ul class="nav flex-column p-3 gap-3" style="color:#f28907;">
+        <li class="nav-item">
+            <a class="nav-link text-warning fw-bold fs-5" href="{% url 'home' %}"><i class="fa-solid fa-gauge me-2"></i>Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="{% url 'all_staff_list' %}"><i
+                    class="fa-solid fa-chalkboard-user me-2"></i>Manage
+                Staff</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="{% url 'staff_attendance' %}"><i class="fa-solid fa-calendar-check me-2"></i>
+                Staff Attendance</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="{% url 'all_students'  %}"><i
+                    class="fa-solid fa-user-graduate me-2"></i>Manage
+                Student </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="#"><i class="fa-solid fa-calendar-check me-2"></i>
+                Manage Attendance</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="{% url 'subject_list' %}"><i class="fa-solid fa-book-open me-2"></i>Manage
+                Subject</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="#"><i class="fas fa-file-invoice-dollar"></i>Manage Fees</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="#"> <i class="fa-solid fa-clipboard-list me-2"></i>
+                View
+                Attendance</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-warning  fw-bold fs-5" href="{% url 'logout' %}">
+                <i class="fa-solid fa-power-off me-2"></i>Logout</a>
+        </li>
+
+
+    </ul>
+</div>
