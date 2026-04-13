@@ -1,5 +1,6 @@
 School Management System 
 Status: In Progress...
+
 Description: This project is currently under development. Some features are completed while others are in progress.
 
 
