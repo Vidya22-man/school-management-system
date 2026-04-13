@@ -4,9 +4,6 @@ Status: In Progress...
 Description: This project is currently under development. Some features are completed while others are in progress.
 
 
-School Management System
-This is a School Management System project developed using Django.
-
 # Features Completed
 - Student management
 - Teacher management
